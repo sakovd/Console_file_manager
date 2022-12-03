@@ -25,16 +25,24 @@ def my_bank_account():
 
         choice = input('Выберите пункт меню - ')
         if choice == '1':
-            cost = int(input('Введите сумму - '))
-            bill_sum += cost
-        elif choice == '2':
-            cost =int( input('Введите сумму покупки - '))
-            if cost > bill_sum:
-                print('Недостаточно средств')
+            try:
+                cost = int(input('Введите сумму - '))
+            except Exception:
+                print('Вы ввели не число!')
             else:
-                bill_sum -= cost
-                name = input('Введите название покупки - ')
-                history.append((name, cost))
+                bill_sum += cost
+        elif choice == '2':
+            try:
+                cost =int( input('Введите сумму покупки - '))
+            except Exception:
+                    print('Вы ввели не число!')
+            else:
+                if cost > bill_sum:
+                    print('Недостаточно средств')
+                else:
+                    bill_sum -= cost
+                    name = input('Введите название покупки - ')
+                    history.append((name, cost))
         elif choice == '3':
             print(history)
         elif choice == '4':

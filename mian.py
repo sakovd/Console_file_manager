@@ -21,31 +21,19 @@ while True:
     choice = input('\nВыберите пункт меню - ')
     if choice == '1':
         name = input('Введите название папки: ')
-        if os.path.exists(name):
-            print('Такая папка уже существует!')
-        else:
-            # создать папку передаем путь
-            os.mkdir(name)
+        print('Такая папка уже существует!') if os.path.exists(name) else os.mkdir(name)
+
     elif choice == '2':
         answer = ''
         while answer not in ['файл', 'папка']:
             answer = input('Что вы хотите удалить (файл/папка): ')
         if answer == 'файл':
             name = input('Введите название файла для удаления: ')
-            if name in os.listdir():
-                os.remove(name)
-                print(f'Файл {name} успешно удален!')
-            else:
-                print('Нет такого файла')
+            os.remove(name) and print(f'Файл {name} успешно удален!') if name in os.listdir() else print('Нет такого файла')
+
         else:
             name = input('Введите название папки для удаления: ')
-            if name in os.listdir():
-                os.rmdir(name)
-                print(f'Папка {name} успешно удалена!')
-            else:
-                print('Нет такой папки')
-
-        #name = input('Введите название файла/папки для удаления: ')
+            os.rmdir(name)  and print(f'Папка {name} успешно удалена!') if name in os.listdir() else print('Нет такой папки')
 
     elif choice == '3':
         pass
@@ -64,16 +52,14 @@ while True:
 
     elif choice == '5':
         spisok = []
-        for file in os.listdir():
-            if os.path.isdir(file):
-                spisok.append(file)
-        print(spisok)
+        result = [file for file in os.listdir() if os.path.isdir(file)]
+        print(result)
+
     elif choice == '6':
         spisok = []
-        for file in os.listdir():
-            if os.path.isfile(file):
-                spisok.append(file)
-        print(spisok)
+        result = [file for file in os.listdir() if os.path.isfile(file)]
+        print(result)
+
     elif choice == '7':
         print(sys.platform)
     elif choice == '8':
