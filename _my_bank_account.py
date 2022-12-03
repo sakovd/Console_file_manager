@@ -57,6 +57,5 @@ def my_bank_account():
         else:
             print('Неверный пункт меню')
 
-
 if __name__ == '__main__':
     print('Проверка фукцнии', my_bank_account())
